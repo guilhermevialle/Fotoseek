@@ -11,6 +11,7 @@ import Footer from './Footer'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import ScrollImage from '../ScrollImage'
 import ImageModal from '../ImageModal'
+import { v4 as uuid } from 'uuid'
 
 type Props = {
   title: string
@@ -98,9 +99,12 @@ function ShowImages({ queryConfig, title }: Props) {
             {strippedData.length > 0 &&
               strippedData.map((arrayOfImages) => {
                 return (
-                  <div className={`w-1/3 flex-auto h-fit space-y-2`}>
+                  <div
+                    key={uuid()}
+                    className={`w-1/3 flex-auto h-fit space-y-2`}
+                  >
                     {arrayOfImages.map((image) => {
-                      return <ScrollImage key={image.id} image={image} />
+                      return <ScrollImage key={uuid()} image={image} />
                     })}
                   </div>
                 )

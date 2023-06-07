@@ -16,7 +16,7 @@ export default function useLiked() {
     } else {
       setLikedContent(JSON.parse(storedLikedContent))
     }
-  }, [])
+  }, [setLikedContent])
 
   function addLikedItem(id: number) {
     if (!localStorage.getItem('fs-liked')) {

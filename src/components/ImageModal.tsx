@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { usePathname, useRouter } from 'next/navigation'
 import Padding from './responsive/Padding'
 import { RxBookmarkFilled, RxBookmark } from 'react-icons/rx'
@@ -7,6 +9,8 @@ import { Photo } from 'pexels'
 import { findUniqueImage } from '@/services/api'
 import useLiked from '@/hooks/useLiked'
 import Dropdown from './lib/dropdown/Dropdown'
+import downloadImage from '@/utils/downloadImage'
+import { DropdownOption, Size } from '@/types'
 
 type Props = {
   id: string
@@ -26,12 +30,26 @@ export default function ImageModal({ id }: Props) {
       image && setImage(image)
     }
     fetchOnMount()
-  }, [])
+  }, [id])
 
   function saveLikedImage() {
     if (isLiked(Number(id))) return removeLikedItem(Number(id))
 
     addLikedItem(Number(id))
+  }
+
+  let sizes = image?.src && Object.keys(image?.src)
+  let dropOptionsArray: DropdownOption[] = []
+
+  if (sizes) {
+    dropOptionsArray = sizes?.map((size) => {
+      const inferSize = size as Size
+
+      return {
+        text: size,
+        clickFn: () => downloadImage(image?.src[inferSize] ?? ''),
+      }
+    })
   }
 
   return (
@@ -57,12 +75,7 @@ export default function ImageModal({ id }: Props) {
               <Dropdown
                 buttonTitle='Download'
                 sectionTitle='Choose a size'
-                options={[
-                  {
-                    text: 'Original',
-                    clickFn: () => console.log('Hello'),
-                  },
-                ]}
+                options={dropOptionsArray}
               />
             </div>
             <div className='w-full h-[80%]'>

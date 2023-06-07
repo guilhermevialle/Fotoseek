@@ -1,6 +1,7 @@
 import { DropdownOption } from '@/types'
 import { useState } from 'react'
 import { BiChevronDown } from 'react-icons/bi'
+import { v4 as uuid } from 'uuid'
 
 type Props = {
   buttonTitle: string
@@ -37,7 +38,7 @@ export default function Dropdown({
               return (
                 <button
                   onClick={() => option.clickFn()}
-                  key={option.text}
+                  key={uuid()}
                   className='w-full h-12 text-left hover:bg-neutral-50 rounded px-4 focus:bg-zinc-100'
                 >
                   {option.text}

@@ -9,3 +9,13 @@ export type DropdownOption = {
   text: string
   clickFn: () => void
 }
+
+export type Size =
+  | 'original'
+  | 'large2x'
+  | 'large'
+  | 'medium'
+  | 'small'
+  | 'portrait'
+  | 'landscape'
+  | 'tiny'
