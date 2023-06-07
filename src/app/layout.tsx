@@ -14,7 +14,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
+      <head>
+        <link
+          href='https://fonts.cdnfonts.com/css/utm-avo?styles=30169,15293'
+          rel='stylesheet'
+        />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
