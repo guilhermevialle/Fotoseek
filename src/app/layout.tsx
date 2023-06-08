@@ -21,7 +21,7 @@ export default function RootLayout({
           rel='stylesheet'
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className + ' select-none'}>{children}</body>
     </html>
   )
 }

@@ -56,13 +56,13 @@ export default function ImageModal({ id }: Props) {
   return (
     <div className='w-full h-full bg-black bg-opacity-60 z-20 fixed left-0 top-0'>
       <button
-        className='text-white absolute top-6 left-8'
+        className='text-white absolute top-3 left-3'
         onClick={() => router.push(`${pathname}`)}
       >
         <MdClose size={34} />
       </button>
       <div className='w-full h-full border-2 flex justify-center items-center'>
-        <Padding paddingY=' py-14 '>
+        <Padding paddingY=' py-4 md:py-10 '>
           <div className='w-full h-full bg-white px-8 rounded shadow-md'>
             <div className='w-full h-[10%] flex items-center justify-between'>
               <i onClick={saveLikedImage}>
