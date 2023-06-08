@@ -11,6 +11,7 @@ import useLiked from '@/hooks/useLiked'
 import Dropdown from './lib/dropdown/Dropdown'
 import downloadImage from '@/utils/downloadImage'
 import { DropdownOption, Size } from '@/types'
+import { MdClose } from 'react-icons/md'
 
 type Props = {
   id: string
@@ -58,7 +59,7 @@ export default function ImageModal({ id }: Props) {
         className='text-white absolute top-6 left-8'
         onClick={() => router.push(`${pathname}`)}
       >
-        X
+        <MdClose size={34} />
       </button>
       <div className='w-full h-full border-2 flex justify-center items-center'>
         <Padding paddingY=' py-14 '>
