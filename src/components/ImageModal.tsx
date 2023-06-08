@@ -62,7 +62,7 @@ export default function ImageModal({ id }: Props) {
       </button>
       <div className='w-full h-full border-2 flex justify-center items-center'>
         <Padding paddingY=' py-14 '>
-          <div className='w-full h-full bg-white px-8'>
+          <div className='w-full h-full bg-white px-8 rounded shadow-md'>
             <div className='w-full h-[10%] flex items-center justify-between'>
               <i onClick={saveLikedImage}>
                 {isLiked(Number(id)) ? (
@@ -80,12 +80,12 @@ export default function ImageModal({ id }: Props) {
             </div>
             <div className='w-full h-[80%]'>
               <div
-                className={`w-full h-full bg-neutral-300 ${
+                className={`w-full h-full bg-neutral-300 rounded shadow-sm overflow-hidden ${
                   !imageLoadingStatus ? 'animate-pulse' : ''
                 }`}
               >
                 <img
-                  className='w-full h-full object-cover'
+                  className='w-full h-full object-cover '
                   src={image?.src.original}
                   loading='lazy'
                   onLoad={() => setImageLoadingStatus(true)}
