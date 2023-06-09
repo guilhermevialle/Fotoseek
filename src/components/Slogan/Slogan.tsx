@@ -28,7 +28,7 @@ export default function Slogan({ staticRandomImage }: Props) {
       </div>
 
       <div className='w-full h-full flex flex-col justify-center items-center overflow-hidden'>
-        <div className='px-10 md:w-[760px] h-full flex flex-col justify-center items-center'>
+        <div className='px-4 w-fit  md:w-[760px] h-full flex flex-col justify-center items-center'>
           <h1
             id='sloganTitle'
             className='text-3xl font-extrabold text-white mb-8 leading-[44px] break-words uvo-font'

@@ -1,6 +1,6 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import NavBreaker from '@/components/bars/NavBreaker'
+import Topbar from '@/components/navs/Topbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +22,10 @@ export default function RootLayout({
           rel='stylesheet'
         />
       </head>
-      <body className={inter.className + ' select-none'}>{children}</body>
+      <body className={inter.className + ' select-none'}>
+        <Topbar />
+        {children}
+      </body>
       {/* <NavBreaker /> */}
     </html>
   )

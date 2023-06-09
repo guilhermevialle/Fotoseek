@@ -32,6 +32,7 @@ export default function ShowImagesProvider({ ...rest }: Props) {
 
 function ShowImages({ queryConfig, title }: Props) {
   const [immutableData, setImmutableData] = useState<Photo[]>([])
+  const [loadedImage, setLoadedImage] = useState<Photo | undefined>(undefined)
   const params = useSearchParams()
   const existId = params?.get('id')
 
@@ -87,7 +88,13 @@ function ShowImages({ queryConfig, title }: Props) {
             >
               <Masonry gutter='10px'>
                 {immutableData.map((image) => {
-                  return <ScrollImage key={uuid()} image={image} />
+                  return (
+                    <ScrollImage
+                      onClick={() => setLoadedImage(image)}
+                      key={uuid()}
+                      image={image}
+                    />
+                  )
                 })}
               </Masonry>
             </ResponsiveMasonry>
@@ -99,7 +106,7 @@ function ShowImages({ queryConfig, title }: Props) {
         </div>
       </Padding>
 
-      {existId && <ImageModal id={existId} />}
+      {existId && <ImageModal id={existId} loadedImage={loadedImage} />}
     </section>
   )
 }

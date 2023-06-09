@@ -15,9 +15,10 @@ import { MdClose } from 'react-icons/md'
 
 type Props = {
   id: string
+  loadedImage?: Photo
 }
 
-export default function ImageModal({ id }: Props) {
+export default function ImageModal({ id, loadedImage }: Props) {
   const pathname = usePathname()
   const router = useRouter()
   const [imageLoadingStatus, setImageLoadingStatus] = useState<boolean>(false)
@@ -90,7 +91,7 @@ export default function ImageModal({ id }: Props) {
                     !imageLoadingStatus ? 'animate-pulse' : ''
                   }`}
                 >
-                  {!imageLoadingStatus && (
+                  {!imageLoadingStatus && !loadedImage && (
                     <img
                       className='absolute w-full h-full object-cover object-center top-0 left-0 blur-sm'
                       src={image?.src.small}
@@ -98,7 +99,7 @@ export default function ImageModal({ id }: Props) {
                   )}
                   <img
                     className='w-full h-full object-cover '
-                    src={image?.src.original}
+                    src={loadedImage?.src.original ?? image?.src.original}
                     loading='lazy'
                     onLoad={() => setImageLoadingStatus(true)}
                     style={{
@@ -109,7 +110,7 @@ export default function ImageModal({ id }: Props) {
               </div>
               <div className='w-full h-[10%] flex items-center'>
                 <h1 className='text-gray-700 font-semibold'>
-                  {image?.photographer}
+                  {loadedImage?.src.original ?? image?.photographer}
                 </h1>
               </div>
             </div>
