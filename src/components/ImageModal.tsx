@@ -74,7 +74,7 @@ export default function ImageModal({ id, loadedImage }: Props) {
         </div>
         <div className='w-full h-[95%]'>
           <Padding paddingY=' py-4 md:py-10 '>
-            <div className='w-full h-full bg-white px-8 rounded shadow-md'>
+            <div className='w-full h-full bg-white px-4 rounded shadow-md'>
               <div className='w-full h-[10%] flex items-center justify-between'>
                 <i onClick={saveLikedImage}>
                   {isLiked(Number(id)) ? (
