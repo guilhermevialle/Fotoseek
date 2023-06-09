@@ -14,7 +14,7 @@ export default function Search() {
 
     if (input && input.length > 3) {
       setSubmit(true)
-      router.push(`/discover/${input}`)
+      router.replace(`/discover/${input}`)
     }
   }
 

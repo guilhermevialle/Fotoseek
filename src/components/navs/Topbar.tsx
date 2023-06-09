@@ -22,7 +22,10 @@ export default function Topbar() {
               <BiArrowBack size={24} />
             </button>
           ) : (
-            <button onClick={() => router.push('/')}>
+            <button
+              className='rounded-md overflow-hidden shadow-sm'
+              onClick={() => router.push('/')}
+            >
               <Image src={Logo} width={48} height={48} alt='Fotoseek' />
             </button>
           )}

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 .uvo-font {
   font-family: 'UTM Avo', sans-serif;
 }
