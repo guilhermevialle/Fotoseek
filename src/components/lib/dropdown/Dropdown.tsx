@@ -30,7 +30,7 @@ export default function Dropdown({
       </button>
 
       {isSectionOpened && (
-        <div className='w-56 absolute top-[120%] right-0 bg-white py-3 rounded border-[1px] border-neutral-200 shadow-sm'>
+        <div className='w-56 absolute top-[120%] right-0 bg-white py-3 rounded border-[1px] z-20 border-neutral-200 shadow-sm'>
           <h1 className='font-semibold mb-3.5 px-4 text-sm'>{sectionTitle}</h1>
 
           <div className='flex flex-col items-start'>
