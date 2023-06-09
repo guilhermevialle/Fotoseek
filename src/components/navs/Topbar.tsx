@@ -31,7 +31,7 @@ export default function Topbar() {
           )}
           <Dropdown
             buttonSize='w-24'
-            buttonTitle={<CgMenuGridR size={32} />}
+            buttonTitle={<CgMenuGridR size={24} />}
             sectionTitle=''
             sectionSize='w-36'
             options={[
