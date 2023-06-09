@@ -4,7 +4,6 @@
 
 import ImageModal from '@/components/ImageModal'
 import ScrollImage from '@/components/ScrollImage'
-import NavBreaker from '@/components/bars/NavBreaker'
 import Padding from '@/components/responsive/Padding'
 import Footer from '@/components/sections/Footer'
 import useLiked from '@/hooks/useLiked'
