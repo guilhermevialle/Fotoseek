@@ -8,10 +8,11 @@ import Padding from '../responsive/Padding'
 import stripArray from '@/utils/stripArray'
 import { Photo, PhotosWithTotalResults } from 'pexels'
 import Footer from './Footer'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import ScrollImage from '../ScrollImage'
 import ImageModal from '../ImageModal'
 import { v4 as uuid } from 'uuid'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 type Props = {
   title: string
@@ -32,15 +33,12 @@ export default function ShowImagesProvider({ ...rest }: Props) {
 }
 
 function ShowImages({ queryConfig, title }: Props) {
-  const isMediumScreen = useMediaQuery({ minWidth: 768 })
-  const [strippedData, setStrippedData] = useState<Photo[][]>([])
-  const router = useRouter()
-  const pathname = usePathname()
+  const [immutableData, setImmutableData] = useState<Photo[]>([])
   const params = useSearchParams()
   const existId = params?.get('id')
 
-  const { data, hasNextPage, fetchNextPage, isFetching } = useInfiniteQuery(
-    'key',
+  const { data, fetchNextPage, isFetching } = useInfiniteQuery(
+    queryConfig?.key ?? 'somekey',
     async ({ pageParam = 1 }) => {
       if (queryConfig && queryConfig?.fetchFn) {
         return await queryConfig.fetchFn(pageParam)
@@ -55,6 +53,13 @@ function ShowImages({ queryConfig, title }: Props) {
     }
   )
 
+  useEffect(() => {
+    if (data) {
+      const newData = data.pages.flatMap((page) => page?.photos ?? [])
+      setImmutableData((prevData) => [...new Set([...prevData, ...newData])])
+    }
+  }, [data])
+
   function handleContainerScroll(e: React.UIEvent<HTMLDivElement, UIEvent>) {
     const { scrollHeight, scrollTop, clientHeight } = e.target as HTMLElement
 
@@ -66,22 +71,14 @@ function ShowImages({ queryConfig, title }: Props) {
     }
   }
 
-  useEffect(() => {
-    setStrippedData((prev) => [...stripArray(data, 3)])
-  }, [data])
+  const sizes = ['300px', '400px', '200px', '390px', '340px']
+  const imagesPerDiv = Math.floor(immutableData.length / 3)
 
-  useEffect(() => {
-    if (data) {
-      setStrippedData((prevData) => {
-        const strippedData = stripArray(data, 3)
-        const newStrippedData = prevData.map((slicedArray, index) => {
-          const newArray = [...slicedArray, ...strippedData[index]]
-          return newArray
-        })
-        return newStrippedData
-      })
-    }
-  }, [data])
+  const shuffledSizes = [...sizes]
+  for (let i = shuffledSizes.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffledSizes[i], shuffledSizes[j]] = [shuffledSizes[j], shuffledSizes[i]]
+  }
 
   return (
     <section className='w-full h-[100vh] mt-10'>
@@ -90,25 +87,21 @@ function ShowImages({ queryConfig, title }: Props) {
           <h1 className='text-2xl font-medium '>{title}</h1>
         </div>
 
-        <div className='w-full h-[80%] relative'>
+        <div className='w-full h-[80%]'>
           <div className='absolute w-full h-28 bg-gradient-to-b from-transparent to-white -bottom-2 left-0 z-20'></div>
           <div
-            className='w-full h-full overflow-y-auto flex gap-x-2 '
-            onScroll={(e) => handleContainerScroll(e)}
+            className='w-full h-full relative overflow-y-scroll'
+            onScroll={handleContainerScroll}
           >
-            {strippedData.length > 0 &&
-              strippedData.map((arrayOfImages) => {
-                return (
-                  <div
-                    key={uuid()}
-                    className={`w-1/3 flex-auto h-fit space-y-2`}
-                  >
-                    {arrayOfImages.map((image) => {
-                      return <ScrollImage key={uuid()} image={image} />
-                    })}
-                  </div>
-                )
-              })}
+            <ResponsiveMasonry
+              columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
+            >
+              <Masonry gutter='10px'>
+                {immutableData.map((image) => {
+                  return <ScrollImage image={image} />
+                })}
+              </Masonry>
+            </ResponsiveMasonry>
           </div>
         </div>
 

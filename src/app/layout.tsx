@@ -1,5 +1,6 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import NavBreaker from '@/components/bars/NavBreaker'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className + ' select-none'}>{children}</body>
+      {/* <NavBreaker /> */}
     </html>
   )
 }

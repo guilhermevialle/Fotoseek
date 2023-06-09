@@ -7,9 +7,10 @@ import { Photo } from 'pexels'
 
 type Props = {
   image: Photo
+  imageHeight?: string
 }
 
-export default function ScrollImage({ image }: Props) {
+export default function ScrollImage({ image, imageHeight }: Props) {
   const pathname = usePathname()
   const router = useRouter()
 
@@ -26,7 +27,9 @@ export default function ScrollImage({ image }: Props) {
       </div>
       <img
         className='inline-block transition-all cursor-pointer relative'
-        src={image.src.large2x}
+        loading='lazy'
+        src={image.src.large}
+        height={imageHeight}
       />
     </div>
   )

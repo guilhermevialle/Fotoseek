@@ -19,7 +19,7 @@ export default function Dropdown({
   return (
     <div className='w-40 h-fit relative bg-white flex'>
       <button
-        className='flex-auto flex text-left border-[1px] border-neutral-200 p-2 px-3 rounded items-center justify-between shadow-sm text-sm'
+        className='flex-auto flex text-left border-[1px] border-neutral-200 hover:border-neutral-300 focus:border-neutral-400 p-2 px-3 rounded items-center justify-between shadow-sm text-sm'
         onClick={() => setDropdownSection((prev) => !prev)}
       >
         <span className='font-medium '>{buttonTitle}</span>

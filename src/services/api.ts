@@ -5,7 +5,7 @@ export async function getTrendingImages(
   page: number
 ): Promise<Photos | undefined> {
   try {
-    const data = await client.photos.curated({ page, per_page: 15 })
+    const data = await client.photos.curated({ page, per_page: 18 })
     if ('error' in data) return undefined
     return data
   } catch (error) {
@@ -57,6 +57,28 @@ export async function findManyImages({
     if ('error' in images) return undefined
 
     return images
+  } catch (error) {
+    return undefined
+  }
+}
+
+export async function findLikedImages(
+  likedArray: number[]
+): Promise<Photo[] | undefined> {
+  try {
+    let data: Photo[] = []
+    console.log({ likedArray })
+
+    for (const imageId of likedArray) {
+      const image = await findUniqueImage(imageId)
+      console.log({ image })
+
+      if (!image || 'error' in image) continue
+      data.push(image)
+    }
+
+    console.log({ data })
+    return data
   } catch (error) {
     return undefined
   }
