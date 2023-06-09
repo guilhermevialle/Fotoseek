@@ -1,5 +1,6 @@
 'use client'
 
+import TopBreaker from '@/components/navs/TopBreaker'
 import ShowImagesProvider from '@/components/sections/ShowImages'
 import { findManyImages } from '@/services/api'
 
@@ -18,6 +19,7 @@ export default function Discover({ query }: Props) {
 
   return (
     <main className='w-full'>
+      <TopBreaker />
       <ShowImagesProvider title={query + ' images'} queryConfig={queryConfig} />
     </main>
   )

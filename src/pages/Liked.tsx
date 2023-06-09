@@ -4,6 +4,7 @@
 
 import ImageModal from '@/components/ImageModal'
 import ScrollImage from '@/components/ScrollImage'
+import TopBreaker from '@/components/navs/TopBreaker'
 import Padding from '@/components/responsive/Padding'
 import Footer from '@/components/sections/Footer'
 import useLiked from '@/hooks/useLiked'
@@ -36,6 +37,7 @@ function Liked({}: Props) {
 
   return (
     <main className='w-screen h-screen'>
+      <TopBreaker />
       <Padding stretch={true}>
         <div className='w-full h-[10%] flex items-center'>
           <h1 className='text-2xl font-medium'>Your choices</h1>
@@ -55,7 +57,6 @@ function Liked({}: Props) {
         </div>
         <div className='w-full h-[10%]'>
           <Footer />
-          {/* <NavBreaker /> */}
         </div>
       </Padding>
       {id && <ImageModal id={id} />}
