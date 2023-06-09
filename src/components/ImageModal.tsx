@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import Padding from './responsive/Padding'
 import { RxBookmarkFilled, RxBookmark } from 'react-icons/rx'
 import IconButton from './lib/buttons/IconButton'
@@ -12,6 +12,8 @@ import Dropdown from './lib/dropdown/Dropdown'
 import downloadImage from '@/utils/downloadImage'
 import { DropdownOption, Size } from '@/types'
 import { MdClose } from 'react-icons/md'
+import { FiSend } from 'react-icons/fi'
+import Share from './Share'
 
 type Props = {
   id: string
@@ -21,6 +23,8 @@ type Props = {
 export default function ImageModal({ id, loadedImage }: Props) {
   const pathname = usePathname()
   const router = useRouter()
+  const params = useSearchParams()
+  const share = params?.get('share')
   const [imageLoadingStatus, setImageLoadingStatus] = useState<boolean>(false)
   const { addLikedItem, removeLikedItem, isLiked } = useLiked()
 
@@ -56,6 +60,7 @@ export default function ImageModal({ id, loadedImage }: Props) {
 
   return (
     <div className='w-full h-full bg-black bg-opacity-60 z-20 fixed left-0 top-0'>
+      {share && <Share id={Number(id)} />}
       <div className='w-full h-full flex justify-center items-center flex-col'>
         <div className='w-full h-[5%]'>
           <Padding>
@@ -108,10 +113,17 @@ export default function ImageModal({ id, loadedImage }: Props) {
                   />
                 </div>
               </div>
-              <div className='w-full h-[10%] flex items-center'>
+              <div className='w-full h-[10%] flex items-center justify-between'>
                 <h1 className='text-gray-700 font-semibold'>
                   {loadedImage?.src.original ?? image?.photographer}
                 </h1>
+                <i
+                  onClick={() =>
+                    router.replace(`${pathname}/?id=${id}&share=true`)
+                  }
+                >
+                  <IconButton icon={<FiSend />} />
+                </i>
               </div>
             </div>
           </Padding>

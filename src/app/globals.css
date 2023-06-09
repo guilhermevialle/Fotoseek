@@ -13,3 +13,11 @@
 #imageCard:hover > div {
   opacity: 1;
 }
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+  -webkit-tap-highlight-color: transparent;
+}

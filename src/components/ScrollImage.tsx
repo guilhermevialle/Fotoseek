@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { Photo } from 'pexels'
 import { FiDownload } from 'react-icons/fi'
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   image: Photo
   imageHeight?: string
 }
@@ -16,10 +16,10 @@ export default function ScrollImage({ image, imageHeight, ...rest }: Props) {
   const router = useRouter()
 
   return (
-    <div
+    <button
       {...rest}
       id='imageCard'
-      className='relative cursor-zoom-in z-10 shadow-sm'
+      className='relative cursor-zoom-in z-10 shadow-sm outline-none'
       onClick={() => router.replace(`${pathname}/?id=${image.id}`)}
     >
       <div className='w-full h-full absolute bg-black bg-opacity-30 top-0 left-0 z-20 p-3 opacity-0 transition-all duration-300'>
@@ -33,6 +33,6 @@ export default function ScrollImage({ image, imageHeight, ...rest }: Props) {
         src={image.src.large}
         height={imageHeight}
       />
-    </div>
+    </button>
   )
 }
