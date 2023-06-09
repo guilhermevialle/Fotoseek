@@ -40,9 +40,9 @@ export default function Share({ id }: Props) {
         <div className='w-full h-full flex items-center justify-center'>
           <div
             ref={modalRef}
-            className='w-full h-fit bg-white rounded-md p-3.5 flex flex-col'
+            className='w-[90%] h-fit bg-white rounded-md p-3.5 flex flex-col'
           >
-            <h1 className='text-xl font-medium'>Share image</h1>
+            <h1 className='text-xl font-medium'>Share and drop a Feedback!</h1>
 
             <p className='text-sm mt-1.5'>
               Share these images so others can download and enjoy Fotoseek :)
@@ -56,8 +56,8 @@ export default function Share({ id }: Props) {
               </a>
             </div>
 
-            <div className='w-full h-fit mt-4 bg-zinc-50 p-2 rounded flex items-center'>
-              <span className='w-[90%] text-sm'>{`fotoseek.vercel.app${pathname}?id=${id}`}</span>
+            <div className='w-full h-fit mt-4 bg-zinc-50 p-2 rounded flex items-center justify-between'>
+              <span className='w-[85%] text-sm break-words'>{`fotoseek.vercel.app${pathname}?id=${id}`}</span>
               <i className='w-[10%]'>
                 <IoCopySharp size={20} />
               </i>
