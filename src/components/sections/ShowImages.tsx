@@ -1,11 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useMediaQuery } from 'react-responsive'
 import { useInfiniteQuery, QueryClientProvider, QueryClient } from 'react-query'
 import { getTrendingImages } from '@/services/api'
 import Padding from '../responsive/Padding'
-import stripArray from '@/utils/stripArray'
 import { Photo, PhotosWithTotalResults } from 'pexels'
 import Footer from './Footer'
 import { useSearchParams } from 'next/navigation'
@@ -98,7 +96,7 @@ function ShowImages({ queryConfig, title }: Props) {
             >
               <Masonry gutter='10px'>
                 {immutableData.map((image) => {
-                  return <ScrollImage image={image} />
+                  return <ScrollImage key={uuid()} image={image} />
                 })}
               </Masonry>
             </ResponsiveMasonry>
