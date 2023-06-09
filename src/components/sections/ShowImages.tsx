@@ -69,15 +69,6 @@ function ShowImages({ queryConfig, title }: Props) {
     }
   }
 
-  const sizes = ['300px', '400px', '200px', '390px', '340px']
-  const imagesPerDiv = Math.floor(immutableData.length / 3)
-
-  const shuffledSizes = [...sizes]
-  for (let i = shuffledSizes.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffledSizes[i], shuffledSizes[j]] = [shuffledSizes[j], shuffledSizes[i]]
-  }
-
   return (
     <section className='w-full h-[100vh] mt-10'>
       <Padding stretch={true}>
@@ -85,7 +76,7 @@ function ShowImages({ queryConfig, title }: Props) {
           <h1 className='text-2xl font-medium '>{title}</h1>
         </div>
 
-        <div className='w-full h-[80%]'>
+        <div className='w-full h-[80%] relative'>
           <div className='absolute w-full h-28 bg-gradient-to-b from-transparent to-white -bottom-2 left-0 z-20'></div>
           <div
             className='w-full h-full relative overflow-y-scroll'

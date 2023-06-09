@@ -86,15 +86,24 @@ export default function ImageModal({ id }: Props) {
               </div>
               <div className='w-full h-[80%]'>
                 <div
-                  className={`w-full h-full bg-neutral-300 rounded shadow-sm overflow-hidden ${
+                  className={`w-full h-full rounded shadow-sm overflow-hidden relative ${
                     !imageLoadingStatus ? 'animate-pulse' : ''
                   }`}
                 >
+                  {!imageLoadingStatus && (
+                    <img
+                      className='absolute w-full h-full object-cover object-center top-0 left-0 blur-sm'
+                      src={image?.src.small}
+                    />
+                  )}
                   <img
                     className='w-full h-full object-cover '
                     src={image?.src.original}
                     loading='lazy'
                     onLoad={() => setImageLoadingStatus(true)}
+                    style={{
+                      visibility: !imageLoadingStatus ? 'hidden' : 'visible',
+                    }}
                   />
                 </div>
               </div>
