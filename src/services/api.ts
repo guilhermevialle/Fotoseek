@@ -67,17 +67,14 @@ export async function findLikedImages(
 ): Promise<Photo[] | undefined> {
   try {
     let data: Photo[] = []
-    console.log({ likedArray })
 
     for (const imageId of likedArray) {
       const image = await findUniqueImage(imageId)
-      console.log({ image })
 
       if (!image || 'error' in image) continue
       data.push(image)
     }
 
-    console.log({ data })
     return data
   } catch (error) {
     return undefined
