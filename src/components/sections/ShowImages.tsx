@@ -79,26 +79,34 @@ function ShowImages({ queryConfig, title }: Props) {
 
         <div className='w-full h-[80%] relative'>
           <div className='absolute w-full h-28 bg-gradient-to-b from-transparent to-white -bottom-2 left-0 z-20'></div>
-          <div
-            className='w-full h-full relative overflow-y-scroll'
-            onScroll={handleContainerScroll}
-          >
-            <ResponsiveMasonry
-              columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
+          {(isFetching && !immutableData) || immutableData.length == 0 ? (
+            <div className='w-full h-full flex justify-center items-center'>
+              <h1 className='text-lg font-medium text-center'>
+                Sorry, looks like we couldn't find what you wanted :/
+              </h1>
+            </div>
+          ) : (
+            <div
+              className='w-full h-full relative overflow-y-scroll'
+              onScroll={handleContainerScroll}
             >
-              <Masonry gutter='10px'>
-                {immutableData.map((image) => {
-                  return (
-                    <ScrollImage
-                      onClick={() => setLoadedImage(image)}
-                      key={uuid()}
-                      image={image}
-                    />
-                  )
-                })}
-              </Masonry>
-            </ResponsiveMasonry>
-          </div>
+              <ResponsiveMasonry
+                columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
+              >
+                <Masonry gutter='10px'>
+                  {immutableData.map((image) => {
+                    return (
+                      <ScrollImage
+                        onClick={() => setLoadedImage(image)}
+                        key={uuid()}
+                        image={image}
+                      />
+                    )
+                  })}
+                </Masonry>
+              </ResponsiveMasonry>
+            </div>
+          )}
         </div>
 
         <div className='w-full h-[10%]'>
