@@ -4,11 +4,13 @@
 
 import ImageModal from '@/components/ImageModal'
 import ScrollImage from '@/components/ScrollImage'
+import Search from '@/components/lib/inputs/Search'
 import TopBreaker from '@/components/navs/TopBreaker'
 import Padding from '@/components/responsive/Padding'
 import Footer from '@/components/sections/Footer'
 import useLiked from '@/hooks/useLiked'
 import { findLikedImages } from '@/services/api'
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
@@ -44,10 +46,25 @@ function Liked({}: Props) {
         </div>
         <div className='w-full h-[80%]'>
           {likedContent.length < 1 ? (
-            <div className='w-full h-full flex items-center justify-center'>
-              <h1 className='w-[70%] text-lg font-medium'>
-                Hm, it seems that you didnt save any content...{' '}
-              </h1>
+            <div className='w-full h-full flex justify-center items-center'>
+              <Padding>
+                <div className='w-full h-[70%] flex flex-col gap-y-4 items-center justify-center'>
+                  <h1 className='text-lg font-medium text-center'>
+                    Hey, looks like you don&#39;t have any saved content. Then
+                    go explore the
+                    <Link href='/'>
+                      <span className='text-neutral-400 font-medium'>
+                        {' '}
+                        Fotoseek
+                      </span>
+                      .
+                    </Link>
+                  </h1>
+                  <div className='w-full bg-black rounded-md'>
+                    <Search />
+                  </div>
+                </div>
+              </Padding>
             </div>
           ) : (
             <div className='w-full h-full relative overflow-y-scroll'>
