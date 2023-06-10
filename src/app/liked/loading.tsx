@@ -17,7 +17,7 @@ export default function Loading() {
             return (
               <div
                 key={v4()}
-                className='w-[48%] md:w-[32%] h-[400px] bg-neutral-100 animate-pulse rounded-md'
+                className='w-[48%] md:w-[32%] lg:w-[23%] h-[400px] bg-neutral-100 animate-pulse rounded-md'
               ></div>
             )
           })}
