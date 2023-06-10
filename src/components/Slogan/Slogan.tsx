@@ -5,6 +5,8 @@
 import { Photo } from 'pexels'
 import { useMediaQuery } from 'react-responsive'
 import Search from '../lib/inputs/Search'
+import { useState } from 'react'
+import { v4 as uuid } from 'uuid'
 
 type Props = {
   staticRandomImage: Photo | undefined
@@ -17,6 +19,7 @@ export default function Slogan({ staticRandomImage }: Props) {
     <div className='w-full h-[70vh] relative'>
       <div className='w-full h-full absolute -z-10'>
         <img
+          key={uuid()}
           className='w-full h-full object-cover brightness-[30%]'
           alt={staticRandomImage?.alt ?? 'loading'}
           src={
