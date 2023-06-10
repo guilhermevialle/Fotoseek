@@ -85,7 +85,7 @@ function ShowImages({ queryConfig, title }: Props) {
               <Padding>
                 <div className='w-full h-[70%] flex flex-col gap-y-4 items-center justify-center'>
                   <h1 className='text-lg font-medium text-center'>
-                    Sorry, looks like we couldn't find what you wanted :/
+                    Sorry, looks like we could not find what you wanted :/
                   </h1>
                   <div className='w-full bg-black rounded-md'>
                     <Search />
