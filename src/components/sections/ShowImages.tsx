@@ -109,7 +109,7 @@ function ShowImages({ queryConfig, title }: Props) {
               onScroll={handleContainerScroll}
             >
               <ResponsiveMasonry
-                columnsCountBreakPoints={{ 350: 2, 768: 3, 1024: 4 }}
+                columnsCountBreakPoints={{ 350: 2, 640: 3, 1280: 4 }}
               >
                 <Masonry gutter='10px'>
                   {immutableData.map((image) => {
