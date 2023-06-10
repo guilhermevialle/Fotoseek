@@ -1,9 +1,11 @@
+import TopBreaker from '@/components/navs/TopBreaker'
 import Padding from '@/components/responsive/Padding'
 import { v4 } from 'uuid'
 
 export default function Loading() {
   return (
     <main className='w-screen h-screen'>
+      <TopBreaker />
       <section className='w-full h-[100vh] mt-10'>
         <Padding stretch={true}>
           <div className='w-full h-[10%] flex items-center'>
