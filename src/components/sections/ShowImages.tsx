@@ -37,7 +37,14 @@ function ShowImages({ queryConfig, title }: Props) {
   const params = useSearchParams()
   const existId = params?.get('id')
 
-  const { data, fetchNextPage, isFetching } = useInfiniteQuery(
+  const {
+    data,
+    fetchNextPage,
+    isFetching,
+    isFetchedAfterMount,
+    isFetchingNextPage,
+    isLoading,
+  } = useInfiniteQuery(
     queryConfig?.key ?? 'somekey',
     async ({ pageParam = 1 }) => {
       if (queryConfig && queryConfig?.fetchFn) {
@@ -80,7 +87,10 @@ function ShowImages({ queryConfig, title }: Props) {
 
         <div className='w-full h-[80%] relative'>
           <div className='absolute w-full h-28 bg-gradient-to-b from-transparent to-white -bottom-2 left-0 z-20'></div>
-          {(isFetching && !immutableData) || immutableData.length == 0 ? (
+          {!isFetchingNextPage &&
+          !isLoading &&
+          isFetchedAfterMount &&
+          immutableData.length == 0 ? (
             <div className='w-full h-full flex justify-center items-center'>
               <Padding>
                 <div className='w-full h-[70%] flex flex-col gap-y-4 items-center justify-center'>

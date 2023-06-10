@@ -32,7 +32,12 @@ function Liked({}: Props) {
   const id = params?.get('id')
   const { likedContent } = useLiked()
 
-  const { data: likedImages } = useQuery({
+  const {
+    data: likedImages,
+    isFetching,
+    isLoading,
+    isFetchedAfterMount,
+  } = useQuery({
     queryKey: ['liked', likedContent],
     queryFn: () => findLikedImages(likedContent),
   })
@@ -45,7 +50,10 @@ function Liked({}: Props) {
           <h1 className='text-2xl font-medium'>Your choices</h1>
         </div>
         <div className='w-full h-[80%]'>
-          {likedContent.length < 1 ? (
+          {!isFetching &&
+          !isLoading &&
+          isFetchedAfterMount &&
+          likedImages?.length == 0 ? (
             <div className='w-full h-full flex justify-center items-center'>
               <Padding>
                 <div className='w-full h-[70%] flex flex-col gap-y-4 items-center justify-center'>
