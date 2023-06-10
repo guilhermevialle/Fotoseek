@@ -72,11 +72,11 @@ export default function Dropdown({
             {options.map((option) => {
               return (
                 <button
+                  key={uuid()}
                   onClick={() => {
                     closeDropdownSection()
                     option.clickFn()
                   }}
-                  key={uuid()}
                   className='w-full h-11 text-left hover:bg-neutral-50 rounded px-4 focus:bg-zinc-100 text-sm'
                 >
                   {option.text}

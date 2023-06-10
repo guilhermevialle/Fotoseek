@@ -1,4 +1,5 @@
 import Padding from '@/components/responsive/Padding'
+import { v4 } from 'uuid'
 
 export default function Loading() {
   return (
@@ -14,7 +15,10 @@ export default function Loading() {
           <div className='w-full h-[80%] relative flex flex-wrap gap-3'>
             {Array.from('12345').map((e) => {
               return (
-                <div className='w-[48%] md:w-[32%] h-[400px] bg-neutral-100 animate-pulse'></div>
+                <div
+                  key={v4()}
+                  className='w-[48%] md:w-[32%] h-[400px] bg-neutral-100 animate-pulse'
+                ></div>
               )
             })}
           </div>
