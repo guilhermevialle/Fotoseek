@@ -50,7 +50,7 @@ export default function Search() {
     <form
       className={`w-full h-[50px] flex items-center rounded text-zinc-400 relative border-[2px] transition-all ${
         input && !validateInput(input)
-          ? ' border-red-300'
+          ? ' border-red-400'
           : ' border-transparent '
       }`}
       onSubmit={(e) => handleSearchSubmit(e)}

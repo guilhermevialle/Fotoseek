@@ -1,10 +1,8 @@
-import SloganSkeleton from '@/components/Slogan/skeleton'
 import Padding from '@/components/responsive/Padding'
 
 export default function Loading() {
   return (
     <main className='w-screen h-screen'>
-      <SloganSkeleton />
       <section className='w-full h-[100vh] mt-10'>
         <Padding stretch={true}>
           <div className='w-full h-[10%] flex items-center'>
