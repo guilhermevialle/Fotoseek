@@ -43,7 +43,7 @@ function Liked({}: Props) {
   })
 
   return (
-    <main className='w-screen h-screen'>
+    <main className='w-screen h-screen mt-10'>
       <TopBreaker />
       <Padding stretch={true}>
         <div className='w-full h-[10%] flex items-center'>
