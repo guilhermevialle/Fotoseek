@@ -11,6 +11,7 @@ import ScrollImage from '../ScrollImage'
 import ImageModal from '../ImageModal'
 import { v4 as uuid } from 'uuid'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
+import Search from '../lib/inputs/Search'
 
 type Props = {
   title: string
@@ -81,9 +82,16 @@ function ShowImages({ queryConfig, title }: Props) {
           <div className='absolute w-full h-28 bg-gradient-to-b from-transparent to-white -bottom-2 left-0 z-20'></div>
           {(isFetching && !immutableData) || immutableData.length == 0 ? (
             <div className='w-full h-full flex justify-center items-center'>
-              <h1 className='text-lg font-medium text-center'>
-                Sorry, looks like we couldn't find what you wanted :/
-              </h1>
+              <Padding>
+                <div className='w-full h-[70%] flex flex-col gap-y-4 items-center justify-center'>
+                  <h1 className='text-lg font-medium text-center'>
+                    Sorry, looks like we couldn't find what you wanted :/
+                  </h1>
+                  <div className='w-full bg-black rounded-md'>
+                    <Search />
+                  </div>
+                </div>
+              </Padding>
             </div>
           ) : (
             <div
