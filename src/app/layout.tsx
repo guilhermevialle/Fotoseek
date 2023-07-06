@@ -1,11 +1,15 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
 import Topbar from '@/components/navs/Topbar'
+import { Inter } from 'next/font/google'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Fotoseek',
+  title: {
+    default: 'Fotoseek',
+    template: 'Fotoseek | %s',
+  },
+
   description: 'A place where high-quality images are free.',
 }
 
