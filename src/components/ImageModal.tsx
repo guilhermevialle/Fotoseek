@@ -1,19 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import Padding from './responsive/Padding'
-import { RxBookmarkFilled, RxBookmark } from 'react-icons/rx'
-import IconButton from './lib/buttons/IconButton'
-import { useEffect, useState } from 'react'
-import { Photo } from 'pexels'
-import { findUniqueImage } from '@/services/api'
 import useLiked from '@/hooks/useLiked'
-import Dropdown from './lib/dropdown/Dropdown'
-import downloadImage from '@/utils/downloadImage'
+import { findUniqueImage } from '@/services/api'
 import { DropdownOption, Size } from '@/types'
-import { MdClose } from 'react-icons/md'
+import downloadImage from '@/utils/downloadImage'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Photo } from 'pexels'
+import { useEffect, useState } from 'react'
 import { FiSend } from 'react-icons/fi'
+import { MdClose } from 'react-icons/md'
+import { RxBookmark, RxBookmarkFilled } from 'react-icons/rx'
 import Share from './Share'
+import IconButton from './lib/buttons/IconButton'
+import Dropdown from './lib/dropdown/Dropdown'
+import Padding from './responsive/Padding'
 
 type Props = {
   id: string

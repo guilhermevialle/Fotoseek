@@ -1,16 +1,16 @@
 import { Photos } from 'pexels'
 
-export type Page = {
+type Page = {
   pages: Photos[]
   pageParams: number[]
 }
 
-export type DropdownOption = {
+type DropdownOption = {
   text: string
   clickFn: () => void
 }
 
-export type Size =
+type Size =
   | 'original'
   | 'large2x'
   | 'large'
